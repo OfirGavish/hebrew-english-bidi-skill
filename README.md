@@ -41,8 +41,8 @@ Copy the **whole folder**, including its `references` directory, not just
 **[Download hebrew-english-bidi.zip](https://github.com/OfirGavish/hebrew-english-bidi-skill/raw/refs/heads/main/hebrew-english-bidi.zip)**
 
 This upload-ready ZIP contains one top-level `hebrew-english-bidi` folder with
-`SKILL.md`, all five reference files, and the MIT license. It does not contain
-the repository's `.github` wrapper or catalog metadata.
+`SKILL.md`, all five reference files, and the MIT license as `LICENSE.txt`.
+It does not contain the repository's `.github` wrapper or catalog metadata.
 
 For AI tools that support importing custom skills as ZIP files:
 
@@ -61,6 +61,24 @@ does not add file-editing tools the host does not already provide.
 If the host requires a folder instead, extract the ZIP and copy the complete
 `hebrew-english-bidi` folder into its documented skills directory. Keep
 `SKILL.md` directly inside that folder, with `references` alongside it.
+
+### Copilot in PowerPoint
+
+1. Open Copilot in PowerPoint and select **+ > Choose skills > Manage skills**.
+2. Select **Add skill**, then the upload option, and upload the downloaded
+   `hebrew-english-bidi.zip` without extracting it.
+3. If needed, refresh **Manage skills**, then select the skill to use it.
+
+PowerPoint rejected the earlier ZIP containing an extensionless `LICENSE` file
+with the message **"This skill includes a file that can't be checked, so it
+can't be used."** Changing only that packaged filename to `LICENSE.txt`
+resolved the reported upload issue; the skill and license text are unchanged.
+If you encounter this error with an older copy, download the latest ZIP above.
+
+All files in the ZIP now use `.md` or `.txt` extensions, both listed in
+[PowerPoint's supported skill file types](https://support.microsoft.com/en-us/powerpoint/copilot/copilot-in-powerpoint-skills#known-limitations).
+Use these personal skill-upload instructions, not the separate organization-wide
+admin deployment flow, which requires a different package.
 
 ### VS Code / GitHub Copilot
 
@@ -173,7 +191,8 @@ do not post private documents, credentials, or customer data.
 Update the matching format reference and regression cases together.
 Do not add a new format as "supported" without documenting its tools and limits.
 When changing the skill payload, rebuild `hebrew-english-bidi.zip` to keep it
-in sync, preserving the top-level skill folder and including the MIT license.
+in sync, preserving the top-level skill folder and including the repository's
+MIT `LICENSE` as `LICENSE.txt` inside that folder for PowerPoint compatibility.
 
 ## License
 
