@@ -36,13 +36,57 @@ The canonical payload is
 Copy the **whole folder**, including its `references` directory, not just
 `SKILL.md`.
 
+### Download or manually upload the skill ZIP
+
+**[Download hebrew-english-bidi.zip](https://github.com/OfirGavish/hebrew-english-bidi-skill/raw/refs/heads/main/hebrew-english-bidi.zip)**
+
+This upload-ready ZIP contains one top-level `hebrew-english-bidi` folder with
+`SKILL.md`, all five reference files, and the MIT license. It does not contain
+the repository's `.github` wrapper or catalog metadata.
+
+For AI tools that support importing custom skills as ZIP files:
+
+1. Download the skill ZIP using the link above. Do **not** use GitHub's
+   **Code > Download ZIP**, which downloads the whole repository instead.
+2. Open the tool's custom-skill management area and choose its upload or import
+   action. The location and labels depend on the host.
+3. Select `hebrew-english-bidi.zip` without extracting it, then follow the
+   host's steps to enable the skill.
+
+Use the host's **skill importer**, not an ordinary chat attachment, unless its
+documentation explicitly describes attaching a ZIP as a skill-installation
+method. ZIP import is not available in every AI tool, and installing the skill
+does not add file-editing tools the host does not already provide.
+
+If the host requires a folder instead, extract the ZIP and copy the complete
+`hebrew-english-bidi` folder into its documented skills directory. Keep
+`SKILL.md` directly inside that folder, with `references` alongside it.
+
 ### VS Code / GitHub Copilot
 
 Clone this repository and work in it for workspace-local discovery, or copy the
 skill into another project's `.github/skills/` directory.
 
 For personal use across projects with a host that supports
-`~/.copilot/skills/`, these PowerShell commands install a local copy:
+`~/.copilot/skills/`, choose either installation method below.
+
+**From the downloaded ZIP** (adjust `$zip` if you saved it elsewhere):
+
+```powershell
+$zip = Join-Path $HOME 'Downloads\hebrew-english-bidi.zip'
+$skills = Join-Path $HOME '.copilot\skills'
+$destination = Join-Path $skills 'hebrew-english-bidi'
+if (Test-Path -LiteralPath $destination) {
+    throw "Skill already exists at $destination; review before replacing it."
+}
+New-Item -ItemType Directory -Path $skills -Force | Out-Null
+Expand-Archive -LiteralPath $zip -DestinationPath $skills
+```
+
+The ZIP already contains the `hebrew-english-bidi` folder, so extract into
+`skills`, not into an additional `hebrew-english-bidi` subfolder.
+
+**From Git**:
 
 ```powershell
 git clone https://github.com/OfirGavish/hebrew-english-bidi-skill.git
@@ -128,6 +172,8 @@ input, expected direction, and observed behavior. Use synthetic examples;
 do not post private documents, credentials, or customer data.
 Update the matching format reference and regression cases together.
 Do not add a new format as "supported" without documenting its tools and limits.
+When changing the skill payload, rebuild `hebrew-english-bidi.zip` to keep it
+in sync, preserving the top-level skill folder and including the MIT license.
 
 ## License
 
