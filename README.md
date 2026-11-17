@@ -171,6 +171,21 @@ handling Hebrew does not mean forcing English-only text into RTL.
 
 ## Validation
 
+Synthetic **Word and PowerPoint repair-and-repeat tests were run in Cowork and
+an unpublished Copilot Studio agent on 2026-11-17**. Both hosts returned editable
+files that passed preservation, package, and repeat-pass checks. Outputs were
+also rendered and inspected externally in native Microsoft Word and PowerPoint.
+The cases include 18 Word direction/alignment checks, seven Word terminal-period
+checks, and 17 PowerPoint paragraph checks across four slides and speaker notes.
+
+See the **[validation report and downloadable evidence](./VALIDATION.md)** for
+the exact tested payloads, corrections, reproduction steps, and limitations.
+Copilot Studio did not have a usable renderer; external visual verification is
+not an in-platform rendering pass. Cowork's LibreOffice renderer reported two
+token artifacts absent from the native Office render. The separate Copilot in
+PowerPoint upload flow was tested, but its document-repair workflow was not.
+Other formats and advanced document features remain unverified.
+
 The skill includes a
 [mixed-language corpus and regression checklist](./.github/skills/hebrew-english-bidi/references/validation.md).
 These are acceptance criteria, not a claim that every renderer or host has
@@ -191,8 +206,10 @@ do not post private documents, credentials, or customer data.
 Update the matching format reference and regression cases together.
 Do not add a new format as "supported" without documenting its tools and limits.
 When changing the skill payload, rebuild `hebrew-english-bidi.zip` to keep it
-in sync, preserving the top-level skill folder and including the repository's
-MIT `LICENSE` as `LICENSE.txt` inside that folder for PowerPoint compatibility.
+in sync, preserving the top-level skill folder and its MIT `LICENSE.txt` for
+PowerPoint compatibility. Keep the payload's license identical to the
+repository's MIT `LICENSE`; do not bundle the human-facing validation report
+or test evidence into the skill.
 
 ## License
 
